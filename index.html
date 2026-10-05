@@ -88,6 +88,12 @@
 
   /* Hero */
   .hero { padding: 60px; }
+  .hero-content { display: flex; gap: 48px; align-items: flex-start; }
+  .hero-text { flex: 1; min-width: 0; }
+  .profile {
+    width: 200px; height: 280px; flex-shrink: 0; object-fit: cover;
+    border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
   h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
   .subtitle { font-size: 18px; font-weight: 500; color: var(--primary); line-height: 1.6; margin-bottom: 24px; }
   .bio { list-style: none; max-width: 900px; }
@@ -171,6 +177,8 @@
     .container { padding: 16px; }
     .card, .hero { padding: 28px 22px; margin-bottom: 16px; }
     h1 { font-size: 36px; }
+    .hero-content { flex-direction: column; gap: 24px; }
+    .profile { width: 150px; height: 210px; }
     .card h2 { font-size: 24px; margin-bottom: 20px; }
     .grid { grid-template-columns: 1fr; }
     .news li { grid-template-columns: 1fr; gap: 0; }
@@ -196,6 +204,9 @@
 <div class="container">
 
   <header class="card hero" id="top">
+    <div class="hero-content">
+    <img class="profile" src="images/gongbo_zhang.jpg" alt="Gongbo Zhang" width="200" height="280">
+    <div class="hero-text">
     <h1>Gongbo Zhang</h1>
     <p class="subtitle">Associate Research Scientist · Department of Biomedical Informatics, Columbia University</p>
     <ul class="bio">
@@ -209,6 +220,8 @@
       <a href="https://www.linkedin.com/in/gongbo-zhang/">LinkedIn</a>
       <a href="https://github.com/gzhang64">GitHub</a>
       <a class="btn-cv" href="Gongbo_Zhang_CV.pdf" target="_blank" rel="noopener">CV</a>
+    </div>
+    </div>
     </div>
   </header>
 

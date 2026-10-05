@@ -65,7 +65,6 @@
     max-width: 880px; margin: 0 auto; padding: 0 16px;
     display: flex; align-items: center; gap: 20px; height: 56px;
   }
-  .nav-name { font-weight: 600; color: var(--text); white-space: nowrap; }
   .nav-links { display: flex; gap: 18px; overflow-x: auto; scrollbar-width: none; flex: 1; }
   .nav-links::-webkit-scrollbar { display: none; }
   .nav-links a { color: var(--muted); font-size: 14px; white-space: nowrap; }
@@ -159,7 +158,6 @@
   footer { max-width: 880px; margin: 0 auto; padding: 24px 16px 40px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--rule); }
 
   @media (max-width: 600px) {
-    .nav-name { display: none; }
     .entry { grid-template-columns: 1fr; }
     .entry .loc, .entry .date { text-align: left; }
     .rows li { flex-direction: column; gap: 0; }
@@ -172,7 +170,6 @@
 
 <nav>
   <div class="nav-inner">
-    <a class="nav-name" href="#top">Gongbo Zhang</a>
     <div class="nav-links">
       <a href="#news">News</a>
       <a href="#experience">Experience</a>

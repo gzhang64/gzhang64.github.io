@@ -63,12 +63,11 @@
   /* Navigation */
   nav {
     position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--card) 90%, transparent);
-    backdrop-filter: blur(8px);
+    background: var(--card);
     border-bottom: 1px solid var(--border);
   }
   .nav-inner {
-    max-width: 1100px; margin: 0 auto; padding: 0 40px; height: 56px;
+    position: relative; max-width: 1100px; margin: 0 auto; padding: 0 40px; height: 56px;
     display: flex; align-items: center; gap: 28px;
     overflow-x: auto; scrollbar-width: none;
   }
@@ -613,7 +612,8 @@
 <script>
   // Highlight the nav link for the section in view.
   (function () {
-    var links = document.querySelectorAll(".nav-inner a");
+    var nav = document.querySelector(".nav-inner");
+    var links = nav.querySelectorAll("a");
     var byId = {};
     links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
     var obs = new IntersectionObserver(function (entries) {
@@ -621,7 +621,13 @@
         if (!e.isIntersecting) return;
         links.forEach(function (a) { a.classList.remove("active"); });
         var a = byId[e.target.id];
-        if (a) { a.classList.add("active"); a.scrollIntoView({ block: "nearest", inline: "nearest" }); }
+        if (!a) return;
+        a.classList.add("active");
+        // Keep the active link visible when the nav overflows (phones) by
+        // scrolling only the nav strip; scrollIntoView would also move the page.
+        var left = a.offsetLeft, right = left + a.offsetWidth;
+        if (left < nav.scrollLeft) nav.scrollLeft = left - 16;
+        else if (right > nav.scrollLeft + nav.clientWidth) nav.scrollLeft = right - nav.clientWidth + 16;
       });
     }, { rootMargin: "-80px 0px -70% 0px" });
     Object.keys(byId).forEach(function (id) {

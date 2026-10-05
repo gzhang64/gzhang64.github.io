@@ -8,199 +8,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --primary: #2563eb;
-    --primary-hover: #1e40af;
-    --primary-soft: #eff6ff;
-    --text-dark: #1e293b;
-    --text-light: #64748b;
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --border: #e2e8f0;
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --on-primary: #ffffff;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --primary: #60a5fa;
-      --primary-hover: #93c5fd;
-      --primary-soft: #172036;
-      --text-dark: #e2e8f0;
-      --text-light: #94a3b8;
-      --bg: #0b1120;
-      --card: #111827;
-      --border: #1f2937;
-      --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-      --on-primary: #0b1120;
-    }
-  }
-  :root[data-theme="dark"] {
-    --primary: #60a5fa;
-    --primary-hover: #93c5fd;
-    --primary-soft: #172036;
-    --text-dark: #e2e8f0;
-    --text-light: #94a3b8;
-    --bg: #0b1120;
-    --card: #111827;
-    --border: #1f2937;
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    --on-primary: #0b1120;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
-  body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    line-height: 1.7;
-    font-size: 16px;
-    color: var(--text-dark);
-    background: var(--bg);
-  }
-  a { color: var(--primary); text-decoration: none; transition: color .2s; }
-  a:hover { color: var(--primary-hover); }
-
-  /* Navigation */
-  nav {
-    position: sticky; top: 0; z-index: 10;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner {
-    position: relative; max-width: 1100px; margin: 0 auto; padding: 0 40px; height: 56px;
-    display: flex; align-items: center; gap: 28px;
-    overflow-x: auto; scrollbar-width: none;
-  }
-  .nav-inner::-webkit-scrollbar { display: none; }
-  .nav-inner a { color: var(--text-light); font-size: 15px; font-weight: 500; white-space: nowrap; }
-  .nav-inner a:hover, .nav-inner a.active { color: var(--primary); }
-
-  .container { max-width: 1100px; margin: 0 auto; padding: 32px 40px 40px; }
-
-  .card {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 50px 60px;
-    margin-bottom: 32px;
-    box-shadow: var(--shadow);
-  }
-  .card h2 { font-size: 30px; font-weight: 700; margin-bottom: 28px; letter-spacing: -0.01em; }
-
-  /* Hero */
-  .hero { padding: 60px; }
-  .hero-content { display: flex; align-items: center; justify-content: center; gap: 72px; margin-bottom: 40px; }
-  .hero-text { text-align: center; min-width: 0; }
-  .profile { width: 240px; height: 240px; flex-shrink: 0; object-fit: cover; border-radius: 50%; }
-  h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 12px; }
-  .subtitle { font-size: 20px; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
-  .affil { font-size: 17px; color: var(--text-dark); line-height: 1.5; margin-bottom: 12px; }
-  .email { font-size: 15px; margin-bottom: 16px; }
-  .email a { color: var(--text-light); }
-  .email a:hover { color: var(--primary); }
-  .bio { list-style: none; border-top: 1px solid var(--border); padding-top: 32px; }
-  .bio li { position: relative; padding-left: 20px; font-size: 16px; color: var(--text-light); line-height: 1.75; margin-bottom: 10px; }
-  .bio li:last-child { margin-bottom: 0; }
-  .bio li::before { content: ""; position: absolute; left: 0; top: .72em; width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
-  .bio b { color: var(--text-dark); font-weight: 600; }
-  .contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; align-items: center; }
-  .contact a { color: var(--text-light); font-weight: 500; }
-  .contact a:hover { color: var(--primary); }
-  .contact a.btn-cv {
-    display: inline-block; padding: 9px 24px; border-radius: 6px;
-    background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: 15px;
-    transition: background .2s, transform .2s, box-shadow .2s;
-  }
-  .contact a.btn-cv:hover { background: var(--primary-hover); color: var(--on-primary); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37, 99, 235, .3); }
-
-  /* News */
-  .news { list-style: none; }
-  .news li { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 10px 0; border-top: 1px solid var(--border); }
-  .news li:first-child { border-top: 0; padding-top: 0; }
-  .news .when { font-size: 14px; font-weight: 600; color: var(--primary); padding-top: 2px; white-space: nowrap; }
-  .news .what i { color: var(--text-light); }
-
-  /* Grids (research, skills) */
-  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .grid-item {
-    padding: 20px 22px; border-left: 3px solid var(--primary);
-    background: var(--bg); border-radius: 6px; transition: all .2s;
-  }
-  .grid-item:hover { background: var(--primary-soft); transform: translateX(4px); }
-  .tag { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
-  .grid-item p { font-size: 15px; line-height: 1.6; }
-  .grid-item p i { color: var(--text-light); }
-
-  /* Experience */
-  .item { padding: 18px 0; border-top: 1px solid var(--border); }
-  .item:first-of-type { border-top: 0; padding-top: 0; }
-  .item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-  .item-head h3 { font-size: 18px; font-weight: 600; }
-  .years { font-size: 14px; color: var(--text-light); white-space: nowrap; }
-  .item p { color: var(--text-light); font-size: 15px; margin-top: 6px; }
-
-  /* Publications */
-  .pubs { display: flex; flex-direction: column; gap: 22px; }
-  .pub { padding-left: 20px; border-left: 3px solid var(--border); transition: border-color .2s; }
-  .pub:hover { border-left-color: var(--primary); }
-  .pub h3 { font-size: 17px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
-  .pub .authors { font-size: 14px; color: var(--text-light); }
-  .pub .authors strong { color: var(--text-dark); font-weight: 600; }
-  .pub .venue { font-size: 14px; font-weight: 500; color: var(--primary); margin-top: 2px; }
-  .links { display: flex; gap: 14px; margin-top: 4px; font-size: 14px; }
-  .links a { font-weight: 500; }
-
-  .all-pubs { margin-top: 32px; border-top: 1px solid var(--border); padding-top: 24px; }
-  .all-pubs > summary {
-    cursor: pointer; display: inline-block; list-style: none;
-    font-size: 15px; font-weight: 600; color: var(--primary);
-    padding: 10px 14px; background: var(--bg); border-radius: 6px; transition: background .2s;
-  }
-  .all-pubs > summary::-webkit-details-marker { display: none; }
-  .all-pubs > summary::before { content: "▸ "; }
-  .all-pubs[open] > summary::before { content: "▾ "; }
-  .all-pubs > summary:hover { background: var(--primary-soft); }
-  .all-pubs h4 { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-light); margin: 32px 0 18px; }
-  .note { font-size: 13px; color: var(--text-light); margin-top: 20px; }
-
-  /* Simple rows (talks, awards, service, teaching) */
-  .rows { list-style: none; }
-  .rows li { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-top: 1px solid var(--border); }
-  .rows li:first-child { border-top: 0; padding-top: 0; }
-  .rows .sub { display: block; font-size: 14px; color: var(--text-light); }
-  .rows .r { font-size: 14px; color: var(--text-light); white-space: nowrap; }
-  .card h3.label { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-light); margin: 32px 0 14px; }
-  .card h2 + h3.label { margin-top: 0; }
-  .muted { color: var(--text-light); font-size: 15px; }
-
-  footer { text-align: center; color: var(--text-light); font-size: 14px; padding: 8px 0 24px; }
-
-  @media (max-width: 760px) {
-    .nav-inner { padding: 0 16px; gap: 20px; }
-    .container { padding: 16px; }
-    .card, .hero { padding: 28px 22px; margin-bottom: 16px; }
-    h1 { font-size: 36px; }
-    .hero-content { flex-direction: column; gap: 20px; margin-bottom: 28px; }
-    .profile { width: 160px; height: 160px; }
-    .bio { padding-top: 24px; }
-    .card h2 { font-size: 24px; margin-bottom: 20px; }
-    .grid { grid-template-columns: 1fr; }
-    .news li { grid-template-columns: 1fr; gap: 0; }
-    .item-head, .rows li { flex-direction: column; gap: 0; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <a href="#top">About</a>
-    <a href="#news">News</a>
-    <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="#experience">Experience</a>
-    <a href="#talks">Talks</a>
-    <a href="#service">Service</a>
-    <a href="#skills">Skills</a>
+    <a href="index.html" class="active" aria-current="page">Home</a>
+    <a href="index.html#news">News</a>
+    <a href="research.html">Research</a>
+    <a href="publications.html">Publications</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#talks">Talks</a>
+    <a href="index.html#service">Service</a>
   </div>
 </nav>
 
@@ -208,7 +28,7 @@
 
   <header class="card hero" id="top">
     <div class="hero-content">
-      <img class="profile" src="images/gongbo_zhang.jpg" alt="Gongbo Zhang" width="240" height="240">
+      <img class="profile" src="assets/images/gongbo_zhang.jpg" alt="Gongbo Zhang" width="240" height="240">
       <div class="hero-text">
         <h1>Gongbo Zhang</h1>
         <p class="subtitle">Associate Research Scientist</p>
@@ -218,7 +38,7 @@
           <a href="https://scholar.google.com/citations?user=w2roLoUAAAAJ">Google Scholar</a>
           <a href="https://www.linkedin.com/in/gongbo-zhang/">LinkedIn</a>
           <a href="https://github.com/gzhang64">GitHub</a>
-          <a class="btn-cv" href="Gongbo_Zhang_CV.pdf" target="_blank" rel="noopener">CV</a>
+          <a class="btn-cv" href="assets/Gongbo_Zhang_CV.pdf" target="_blank" rel="noopener">CV</a>
         </div>
       </div>
     </div>
@@ -251,28 +71,6 @@
       <li><span class="when">Mar 2025</span><span class="what">"Semi-supervised learning from small annotated data and large unlabeled data for fine-grained PICO entity recognition" published in <i>JAMIA</i>.</span></li>
       <li><span class="when">Jan 2025</span><span class="what">"Mini-mental status examination phenotyping for Alzheimer's disease patients" published in <i>JAMIA</i>.</span></li>
     </ul>
-  </section>
-
-  <section class="card" id="research">
-    <h2>Research</h2>
-    <div class="grid">
-      <div class="grid-item">
-        <div class="tag">Entity recognition</div>
-        <p>Extracting PICO elements from clinical trial publications, including overlapping entities and semi-supervised learning. <i>PICOX (JAMIA 2024), FinePICO (JAMIA 2025)</i></p>
-      </div>
-      <div class="grid-item">
-        <div class="tag">Concept normalization</div>
-        <p>A neural-symbolic AI agent system that maps biomedical text to standard concepts. <i>npj Digital Medicine 2026</i></p>
-      </div>
-      <div class="grid-item">
-        <div class="tag">Evidence summarization</div>
-        <p>Fine-tuning open-source LLMs to close the gap with commercial models for medical evidence summarization. <i>npj Digital Medicine 2024</i></p>
-      </div>
-      <div class="grid-item">
-        <div class="tag">Question answering</div>
-        <p>Long-context retrieval-augmented generation and self-corrective agentic QA. <i>BriefContext (npj Digital Medicine 2025), ACL 2026</i></p>
-      </div>
-    </div>
   </section>
 
   <section class="card" id="publications">
@@ -316,192 +114,7 @@
       </article>
     </div>
 
-    <details class="all-pubs">
-      <summary>Show all publications</summary>
-
-      <h4>Journal Articles</h4>
-      <div class="pubs">
-        <article class="pub">
-          <h3>A neural-symbolic AI agent system for biomedical concept mapping</h3>
-          <p class="authors"><strong>Zhang G.</strong>, Fang Y., Chen F., Ta C., Hripcsak G., Ryan P., Peng Y., Weng C.</p>
-          <p class="venue">npj Digital Medicine 2026</p>
-          <div class="links"><a href="https://doi.org/10.1038/s41746-026-02594-6">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>A data-driven method for research trend analysis in a scientific discipline: Application to the Journal of Biomedical Informatics</h3>
-          <p class="authors">Fang Y.<sup>†</sup>, <strong>Zhang G.</strong><sup>†</sup>, Tejada S.S., Chen F., Shortliffe E., Patel V.L., Peleg M., Weng C.</p>
-          <p class="venue">Journal of Biomedical Informatics 2026</p>
-          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2026.105013">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Evaluating unsupervised and rule-based phenotyping methods versus administrative code counts for systemic sclerosis identification</h3>
-          <p class="authors">Luo Y., <strong>Zhang G.</strong>, Agarwal A., Weng C., Bernstein E.J.</p>
-          <p class="venue">Seminars in Arthritis and Rheumatism 2026</p>
-          <div class="links"><a href="https://doi.org/10.1016/j.semarthrit.2026.153033">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Tutorial: Guidance on the use of large language models for medical research</h3>
-          <p class="authors">Jin Q., Wan N., Leaman R., Tian S., Wang Z., Yang Y., Wang Z., Xiong G., Lai P.T., Zhu Q., Hou B., Sarfo-Gyamfi M., <strong>Zhang G.</strong>, Gilson A., Bhasuran B., He Z., Zhang A., Sun J., Weng C., Summers R.M., Chen Q., Peng Y., Lu Z.</p>
-          <p class="venue">Nature Protocols 2026</p>
-          <div class="links"><a href="https://doi.org/10.1038/s41596-026-01408-z">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>A critical evaluation of generative query expansion on biomedical literature retrieval</h3>
-          <p class="authors">Fang Y., <strong>Zhang G.</strong>, Chen F., Peng Y., Weng C.</p>
-          <p class="venue">JAMIA 2026</p>
-          <div class="links"><a href="https://doi.org/10.1093/jamia/ocag037">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Interpretable fine-tuned large language models facilitate making genetic test decisions for rare diseases</h3>
-          <p class="authors">Nguyen Q.M., Chen F., Liu C., Campbell I.M., <strong>Zhang G.</strong>, Wu D., Szigety K.M., Sheppard S.E., Ahimaz P., Ta C.N., Chung W.K., Weng C., Wang K.</p>
-          <p class="venue">npj Digital Medicine 2026</p>
-          <div class="links"><a href="https://doi.org/10.1038/s41746-026-02733-z">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>CPGPrompt: Translating clinical guidelines into large language model-executable decision support</h3>
-          <p class="authors">Deng R., Martin G., Wang T., <strong>Zhang G.</strong>, Liu Y., Weng C., Wang Y., Rousseau J.F., Peng Y.</p>
-          <p class="venue">JAMIA 2026</p>
-          <div class="links"><a href="https://doi.org/10.1093/jamia/ocag026">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Leveraging long context in retrieval augmented language models for medical question answering</h3>
-          <p class="authors"><strong>Zhang G.</strong>, Xu Z., Jin Q., Chen F., Fang Y., Liu Y., Rousseau J.F., Xu Z., Lu Z., Weng C., Peng Y.</p>
-          <p class="venue">npj Digital Medicine 2025</p>
-          <div class="links"><a href="https://doi.org/10.1038/s41746-025-01651-w">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Scalable scientific interest profiling using large language models</h3>
-          <p class="authors">Liang Y.<sup>†</sup>, <strong>Zhang G.</strong><sup>†</sup>, Sun E., Idnay B., Fang Y., Chen F., Ta C., Peng Y.<sup>‡</sup>, Weng C.<sup>‡</sup></p>
-          <p class="venue">Journal of Biomedical Informatics 2025</p>
-          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2025.104949">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Semi-supervised learning from small annotated data and large unlabeled data for fine-grained Participants, Intervention, Comparison, and Outcomes entity recognition</h3>
-          <p class="authors">Chen F.<sup>†</sup>, <strong>Zhang G.</strong><sup>†</sup>, Fang Y., Peng Y.<sup>‡</sup>, Weng C.<sup>‡</sup></p>
-          <p class="venue">JAMIA 2025</p>
-          <div class="links"><a href="https://doi.org/10.1093/jamia/ocae326">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Mini-mental status examination phenotyping for Alzheimer's disease patients using both structured and narrative electronic health record features</h3>
-          <p class="authors">Idnay B.<sup>†</sup>, <strong>Zhang G.</strong><sup>†</sup>, Chen F., Ta C.N., Schelke M.W., Marder K., Weng C.</p>
-          <p class="venue">JAMIA 2025</p>
-          <div class="links"><a href="https://doi.org/10.1093/jamia/ocae274">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>CLEAR: A vision to support clinical evidence lifecycle with continuous learning</h3>
-          <p class="authors">Fang Y., <strong>Zhang G.</strong>, Chen F., Hripcsak G., Peng Y., Ryan P., Weng C.</p>
-          <p class="venue">Journal of Biomedical Informatics 2025</p>
-          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2025.104884">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Closing the gap between open-source and commercial large language models for medical evidence summarization</h3>
-          <p class="authors"><strong>Zhang G.</strong>, Jin Q., Zhou Y., Wang S., Idnay B., Luo Y., Park E., Nestor J.G., Spotnitz M.E., Soroush A., Campion T.R. Jr, Lu Z., Weng C.<sup>‡</sup>, Peng Y.<sup>‡</sup></p>
-          <p class="venue">npj Digital Medicine 2024</p>
-          <div class="links"><a href="https://doi.org/10.1038/s41746-024-01239-w">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Leveraging generative AI for clinical evidence synthesis needs to ensure trustworthiness</h3>
-          <p class="authors"><strong>Zhang G.</strong>, Jin Q., McInerney D.J., Chen Y., Wang F., Cole C.L., Yang Q., Wang Y., Malin B.A., Peleg M., Wallace B.C., Lu Z., Weng C.<sup>‡</sup>, Peng Y.<sup>‡</sup></p>
-          <p class="venue">Journal of Biomedical Informatics 2024</p>
-          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2024.104640">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>A span-based model for extracting overlapping PICO entities from randomized controlled trial publications</h3>
-          <p class="authors"><strong>Zhang G.</strong>, Zhou Y., Hu Y., Xu H., Weng C.<sup>‡</sup>, Peng Y.<sup>‡</sup></p>
-          <p class="venue">JAMIA 2024</p>
-          <div class="links"><a href="https://doi.org/10.1093/jamia/ocae065">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Rare disease diagnosis using knowledge-guided retrieval augmentation for ChatGPT</h3>
-          <p class="authors">Zelin C., Chung W.K., Jeanne M., <strong>Zhang G.</strong>, Weng C.</p>
-          <p class="venue">Journal of Biomedical Informatics 2024</p>
-          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2024.104702">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Criteria2Query 3.0: Leveraging generative large language models for clinical trial eligibility query generation</h3>
-          <p class="authors">Park J.<sup>†</sup>, Fang Y.<sup>†</sup>, Ta C., <strong>Zhang G.</strong>, Idnay B., Chen F., Feng D., Shyu R., Gordon E.R., Spotnitz M., Weng C.</p>
-          <p class="venue">Journal of Biomedical Informatics 2024</p>
-          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2024.104649">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>A survey of clinicians' views of the utility of large language models</h3>
-          <p class="authors">Spotnitz M., Idnay B., Gordon E.R., Shyu R., <strong>Zhang G.</strong>, Liu C., Cimino J.J., Weng C.</p>
-          <p class="venue">Applied Clinical Informatics 2024</p>
-          <div class="links"><a href="https://doi.org/10.1055/a-2281-7092">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Translational drug-interaction corpus</h3>
-          <p class="authors">Zhang S., Wu H., Wang L., <strong>Zhang G.</strong>, Rocha L.M., Shatkay H., Li L.</p>
-          <p class="venue">Database (Oxford) 2022</p>
-          <div class="links"><a href="https://doi.org/10.1093/database/baac031">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Utilizing image and caption information for biomedical document classification</h3>
-          <p class="authors">Li P., Jiang X., <strong>Zhang G.</strong>, Trabucco J.T., Raciti D., Smith C., Ringwald M., Marai G.E., Arighi C., Shatkay H.</p>
-          <p class="venue">Bioinformatics (ISMB) 2021</p>
-          <div class="links"><a href="https://doi.org/10.1093/bioinformatics/btab331">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>An effective biomedical document classification scheme in support of biocuration: Addressing class imbalance</h3>
-          <p class="authors">Jiang X., Ringwald M., Blake J.A., Arighi C., <strong>Zhang G.</strong>, Shatkay H.</p>
-          <p class="venue">Database (Oxford) 2019</p>
-          <div class="links"><a href="https://doi.org/10.1093/database/baz045">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>On the benefits of digital libraries of case studies of analogical design: Documentation, access, analysis, and learning</h3>
-          <p class="authors">Goel A., <strong>Zhang G.</strong>, Wiltgen B., Zhang Y., Vattam S., Yen J.</p>
-          <p class="venue">AI EDAM 2015</p>
-        </article>
-      </div>
-
-      <h4>Conference Proceedings</h4>
-      <div class="pubs">
-        <article class="pub">
-          <h3>Improving retrieval-augmented generation without taxonomy-based error categorization</h3>
-          <p class="authors"><strong>Zhang G.</strong>, Peng Y., Weng C.</p>
-          <p class="venue">ACL 2026 (Main Conference)</p>
-        </article>
-        <article class="pub">
-          <h3>EvidenceOutcomes: A dataset of clinical trial publications with clinically meaningful outcomes</h3>
-          <p class="authors">Zhou Y., Newbury A.M., <strong>Zhang G.</strong>, Idnay B.R., Liu H., Weng C., Peng Y.</p>
-          <p class="venue">MEDINFO 2025</p>
-          <div class="links"><a href="https://doi.org/10.3233/SHTI250935">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Natural language processing in support of evidence-based medicine: A scoping review</h3>
-          <p class="authors">Xu Z., Ma H., <strong>Zhang G.</strong>, Ding Y., Weng C., Peng Y.</p>
-          <p class="venue">Findings of ACL 2025</p>
-          <div class="links"><a href="https://doi.org/10.18653/v1/2025.findings-acl.1103">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Clinical note structural knowledge improves word sense disambiguation</h3>
-          <p class="authors">Chen F.<sup>†</sup>, <strong>Zhang G.</strong><sup>†</sup>, Chen S., Callahan T., Weng C.</p>
-          <p class="venue">AMIA Joint Summits on Translational Science 2024</p>
-          <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/38827062/">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Identifying experimental evidence in biomedical abstracts relevant to drug-drug interactions</h3>
-          <p class="authors"><strong>Zhang G.</strong>, Roychowdhury D., Li P., Wu H.Y., Zhang S., Li L., Shatkay H.</p>
-          <p class="venue">ACM-BCB 2018</p>
-        </article>
-        <article class="pub">
-          <h3>Identifying articles relevant to drug-drug interaction: Addressing class imbalance</h3>
-          <p class="authors"><strong>Zhang G.</strong>, Bhattacharya M., Wu H.Y., Li P., Li L., Shatkay H.</p>
-          <p class="venue">IEEE BIBM 2017</p>
-        </article>
-        <article class="pub">
-          <h3>Closing the gap: Domain adaptation from explicit to implicit discourse relations</h3>
-          <p class="authors">Ji Y., <strong>Zhang G.</strong>, Eisenstein J.</p>
-          <p class="venue">EMNLP 2015</p>
-        </article>
-        <article class="pub">
-          <h3>The Design Study Library: Compiling, analyzing and using biologically inspired design case studies</h3>
-          <p class="authors">Goel A., <strong>Zhang G.</strong>, Wiltgen B., Zhang Y., Vattam S., Yen J.</p>
-          <p class="venue">Design Computing and Cognition (DCC'14) 2015</p>
-        </article>
-      </div>
-      <p class="note"><sup>†</sup>Equal contribution · <sup>‡</sup>Co-corresponding authors</p>
-    </details>
+    <p class="more"><a href="publications.html">All publications →</a></p>
   </section>
 
   <section class="card" id="experience">
@@ -593,65 +206,7 @@
     </ul>
   </section>
 
-  <section class="card" id="skills">
-    <h2>Technical Skills</h2>
-    <div class="grid">
-      <div class="grid-item">
-        <div class="tag">LLM post-training</div>
-        <p>SFT, LoRA/QLoRA, RLHF, DPO, GRPO</p>
-      </div>
-      <div class="grid-item">
-        <div class="tag">Agentic &amp; retrieval systems</div>
-        <p>Neural-symbolic agent systems; RAG and agentic RAG; BM25 and dense retrieval (bi-encoders, cross-encoder reranking); multi-stage literature screening</p>
-      </div>
-      <div class="grid-item">
-        <div class="tag">Inference &amp; serving</div>
-        <p>vLLM for large-scale inference; Ollama for local model serving; PyTorch, Hugging Face Transformers</p>
-      </div>
-      <div class="grid-item">
-        <div class="tag">Evaluation</div>
-        <p>Rule-based checkers for NLP pipelines; LLM judges; held-out benchmark construction</p>
-      </div>
-      <div class="grid-item">
-        <div class="tag">Programming</div>
-        <p>Python, SQL, C/C++, Java</p>
-      </div>
-      <div class="grid-item">
-        <div class="tag">Languages</div>
-        <p>Chinese (native), English (bilingual proficiency)</p>
-      </div>
-    </div>
-  </section>
-
   <footer>© 2026 Gongbo Zhang · Last updated 2026-10-05</footer>
 </div>
-
-<script>
-  // Highlight the nav link for the section in view.
-  (function () {
-    var nav = document.querySelector(".nav-inner");
-    var links = nav.querySelectorAll("a");
-    var byId = {};
-    links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        links.forEach(function (a) { a.classList.remove("active"); });
-        var a = byId[e.target.id];
-        if (!a) return;
-        a.classList.add("active");
-        // Keep the active link visible when the nav overflows (phones) by
-        // scrolling only the nav strip; scrollIntoView would also move the page.
-        var left = a.offsetLeft, right = left + a.offsetWidth;
-        if (left < nav.scrollLeft) nav.scrollLeft = left - 16;
-        else if (right > nav.scrollLeft + nav.clientWidth) nav.scrollLeft = right - nav.clientWidth + 16;
-      });
-    }, { rootMargin: "-80px 0px -70% 0px" });
-    Object.keys(byId).forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) obs.observe(el);
-    });
-  })();
-</script>
 </body>
 </html>

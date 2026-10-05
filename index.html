@@ -88,21 +88,22 @@
 
   /* Hero */
   .hero { padding: 60px; }
-  .hero-content { display: flex; gap: 48px; align-items: flex-start; }
-  .hero-text { flex: 1; min-width: 0; }
-  .profile {
-    width: 200px; height: 200px; flex-shrink: 0; object-fit: cover;
-    border-radius: 50%; border: 4px solid var(--card);
-    box-shadow: 0 0 0 3px var(--primary), 0 6px 16px rgba(0, 0, 0, 0.15);
-  }
-  h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
-  .subtitle { font-size: 18px; font-weight: 500; color: var(--primary); line-height: 1.6; margin-bottom: 24px; }
-  .bio { list-style: none; max-width: 900px; }
+  .hero-content { display: flex; align-items: center; justify-content: center; gap: 72px; margin-bottom: 40px; }
+  .hero-text { text-align: center; min-width: 0; }
+  .profile { width: 240px; height: 240px; flex-shrink: 0; object-fit: cover; border-radius: 50%; }
+  h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 12px; }
+  .subtitle { font-size: 20px; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+  .affil { font-size: 17px; color: var(--text-dark); line-height: 1.5; margin-bottom: 12px; }
+  .email { font-size: 15px; margin-bottom: 16px; }
+  .email a { color: var(--text-light); }
+  .email a:hover { color: var(--primary); }
+  .bio { list-style: none; border-top: 1px solid var(--border); padding-top: 32px; }
   .bio li { position: relative; padding-left: 20px; font-size: 16px; color: var(--text-light); line-height: 1.75; margin-bottom: 10px; }
+  .bio li:last-child { margin-bottom: 0; }
   .bio li::before { content: ""; position: absolute; left: 0; top: .72em; width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
   .bio b { color: var(--text-dark); font-weight: 600; }
-  .contact { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 28px; align-items: center; }
-  .contact a { color: var(--text-light); }
+  .contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; align-items: center; }
+  .contact a { color: var(--text-light); font-weight: 500; }
   .contact a:hover { color: var(--primary); }
   .contact a.btn-cv {
     display: inline-block; padding: 9px 24px; border-radius: 6px;
@@ -178,8 +179,9 @@
     .container { padding: 16px; }
     .card, .hero { padding: 28px 22px; margin-bottom: 16px; }
     h1 { font-size: 36px; }
-    .hero-content { flex-direction: column; gap: 24px; }
-    .profile { width: 150px; height: 150px; }
+    .hero-content { flex-direction: column; gap: 20px; margin-bottom: 28px; }
+    .profile { width: 160px; height: 160px; }
+    .bio { padding-top: 24px; }
     .card h2 { font-size: 24px; margin-bottom: 20px; }
     .grid { grid-template-columns: 1fr; }
     .news li { grid-template-columns: 1fr; gap: 0; }
@@ -206,24 +208,25 @@
 
   <header class="card hero" id="top">
     <div class="hero-content">
-    <img class="profile" src="images/gongbo_zhang.jpg" alt="Gongbo Zhang" width="200" height="200">
-    <div class="hero-text">
-    <h1>Gongbo Zhang</h1>
-    <p class="subtitle">Associate Research Scientist · Department of Biomedical Informatics, Columbia University</p>
+      <img class="profile" src="images/gongbo_zhang.jpg" alt="Gongbo Zhang" width="240" height="240">
+      <div class="hero-text">
+        <h1>Gongbo Zhang</h1>
+        <p class="subtitle">Associate Research Scientist</p>
+        <p class="affil">Department of Biomedical Informatics<br>Columbia University</p>
+        <p class="email"><a href="mailto:gz2366@cumc.columbia.edu">gz2366@cumc.columbia.edu</a></p>
+        <div class="contact">
+          <a href="https://scholar.google.com/citations?user=w2roLoUAAAAJ">Google Scholar</a>
+          <a href="https://www.linkedin.com/in/gongbo-zhang/">LinkedIn</a>
+          <a href="https://github.com/gzhang64">GitHub</a>
+          <a class="btn-cv" href="Gongbo_Zhang_CV.pdf" target="_blank" rel="noopener">CV</a>
+        </div>
+      </div>
+    </div>
     <ul class="bio">
       <li><b>Seven years of NLP and AI experience across academia and industry</b>, from engineering and research roles at Google and Facebook to biomedical informatics research at Columbia, directed toward making clinical evidence more accessible, reliable, and usable.</li>
       <li>Led first-author research across the clinical NLP pipeline: <b>entity recognition</b>, <b>concept normalization</b>, <b>evidence summarization</b>, and <b>question answering</b>.</li>
       <li>Recipient of the <b>NIH/NLM K99/R00 Pathway to Independence Award</b> (2026); incoming Editorial Board Member of the <i>Journal of Biomedical Informatics</i> (2027).</li>
     </ul>
-    <div class="contact">
-      <a href="mailto:gz2366@cumc.columbia.edu">gz2366@cumc.columbia.edu</a>
-      <a href="https://scholar.google.com/citations?user=w2roLoUAAAAJ">Google Scholar</a>
-      <a href="https://www.linkedin.com/in/gongbo-zhang/">LinkedIn</a>
-      <a href="https://github.com/gzhang64">GitHub</a>
-      <a class="btn-cv" href="Gongbo_Zhang_CV.pdf" target="_blank" rel="noopener">CV</a>
-    </div>
-    </div>
-    </div>
   </header>
 
   <section class="card" id="news">

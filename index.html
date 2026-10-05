@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gongbo Zhang</title>
-<meta name="description" content="Gongbo Zhang — Associate Research Scientist, Department of Biomedical Informatics, Columbia University. LLMs and AI agents for clinical evidence synthesis.">
+<meta name="description" content="Gongbo Zhang — Associate Research Scientist, Department of Biomedical Informatics, Columbia University. NLP, LLMs, and AI agents for clinical evidence.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
     --card: #ffffff;
     --border: #e2e8f0;
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --on-primary: #ffffff;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -31,6 +32,7 @@
       --card: #111827;
       --border: #1f2937;
       --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      --on-primary: #0b1120;
     }
   }
   :root[data-theme="dark"] {
@@ -43,9 +45,11 @@
     --card: #111827;
     --border: #1f2937;
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --on-primary: #0b1120;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
   body {
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     line-height: 1.7;
@@ -56,7 +60,23 @@
   a { color: var(--primary); text-decoration: none; transition: color .2s; }
   a:hover { color: var(--primary-hover); }
 
-  .container { max-width: 1100px; margin: 0 auto; padding: 40px; }
+  /* Navigation */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--card) 90%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 40px; height: 56px;
+    display: flex; align-items: center; gap: 28px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-inner a { color: var(--text-light); font-size: 15px; font-weight: 500; white-space: nowrap; }
+  .nav-inner a:hover, .nav-inner a.active { color: var(--primary); }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 40px 40px; }
 
   .card {
     background: var(--card);
@@ -71,10 +91,19 @@
   .hero { padding: 60px; }
   h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
   .subtitle { font-size: 18px; font-weight: 500; color: var(--primary); line-height: 1.6; margin-bottom: 24px; }
-  .bio { font-size: 17px; color: var(--text-light); line-height: 1.8; max-width: 860px; }
-  .contact { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 32px; align-items: center; }
+  .bio { list-style: none; max-width: 900px; }
+  .bio li { position: relative; padding-left: 20px; font-size: 16px; color: var(--text-light); line-height: 1.75; margin-bottom: 10px; }
+  .bio li::before { content: ""; position: absolute; left: 0; top: .72em; width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
+  .bio b { color: var(--text-dark); font-weight: 600; }
+  .contact { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 28px; align-items: center; }
   .contact a { color: var(--text-light); }
   .contact a:hover { color: var(--primary); }
+  .contact a.btn-cv {
+    display: inline-block; padding: 9px 24px; border-radius: 6px;
+    background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: 15px;
+    transition: background .2s, transform .2s, box-shadow .2s;
+  }
+  .contact a.btn-cv:hover { background: var(--primary-hover); color: var(--on-primary); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37, 99, 235, .3); }
 
   /* News */
   .news { list-style: none; }
@@ -83,7 +112,7 @@
   .news .when { font-size: 14px; font-weight: 600; color: var(--primary); padding-top: 2px; white-space: nowrap; }
   .news .what i { color: var(--text-light); }
 
-  /* Research focus */
+  /* Grids (research, skills) */
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .grid-item {
     padding: 20px 22px; border-left: 3px solid var(--primary);
@@ -92,6 +121,7 @@
   .grid-item:hover { background: var(--primary-soft); transform: translateX(4px); }
   .tag { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
   .grid-item p { font-size: 15px; line-height: 1.6; }
+  .grid-item p i { color: var(--text-light); }
 
   /* Experience */
   .item { padding: 18px 0; border-top: 1px solid var(--border); }
@@ -138,6 +168,7 @@
   footer { text-align: center; color: var(--text-light); font-size: 14px; padding: 8px 0 24px; }
 
   @media (max-width: 760px) {
+    .nav-inner { padding: 0 16px; gap: 20px; }
     .container { padding: 16px; }
     .card, .hero { padding: 28px 22px; margin-bottom: 16px; }
     h1 { font-size: 36px; }
@@ -149,35 +180,55 @@
 </style>
 </head>
 <body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top">About</a>
+    <a href="#news">News</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#experience">Experience</a>
+    <a href="#talks">Talks</a>
+    <a href="#service">Service</a>
+    <a href="#skills">Skills</a>
+  </div>
+</nav>
+
 <div class="container">
 
-  <header class="card hero">
+  <header class="card hero" id="top">
     <h1>Gongbo Zhang</h1>
     <p class="subtitle">Associate Research Scientist · Department of Biomedical Informatics, Columbia University</p>
-    <p class="bio">
-      I build large language models and AI agents for clinical evidence synthesis, retrieval-augmented
-      generation, and biomedical concept normalization in the Weng Lab at Columbia University Irving
-      Medical Center. Before Columbia, I was a software engineer at Google Cloud. I received my Ph.D.
-      in Computer Science from the University of Delaware.
-    </p>
+    <ul class="bio">
+      <li><b>Seven years of NLP and AI experience across academia and industry</b>, from engineering and research roles at Google and Facebook to biomedical informatics research at Columbia, directed toward making clinical evidence more accessible, reliable, and usable.</li>
+      <li>Led first-author research across the clinical NLP pipeline: <b>entity recognition</b>, <b>concept normalization</b>, <b>evidence summarization</b>, and <b>question answering</b>.</li>
+      <li>Recipient of the <b>NIH/NLM K99/R00 Pathway to Independence Award</b> (2026); incoming Editorial Board Member of the <i>Journal of Biomedical Informatics</i> (2027).</li>
+    </ul>
     <div class="contact">
+      <a class="btn-cv" href="Gongbo_Zhang_CV.pdf" target="_blank" rel="noopener">CV</a>
       <a href="mailto:gz2366@cumc.columbia.edu">gz2366@cumc.columbia.edu</a>
+      <a href="https://scholar.google.com/citations?user=w2roLoUAAAAJ">Google Scholar</a>
       <a href="https://www.linkedin.com/in/gongbo-zhang/">LinkedIn</a>
       <a href="https://github.com/gzhang64">GitHub</a>
-      <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Zhang+Gongbo%5BAuthor%5D">PubMed</a>
     </div>
   </header>
 
   <section class="card" id="news">
     <h2>News</h2>
     <ul class="news">
+      <li><span class="when">Oct 2026</span><span class="what">"Evaluating unsupervised and rule-based phenotyping methods versus administrative code counts for systemic sclerosis identification" published in <i>Seminars in Arthritis and Rheumatism</i>.</span></li>
       <li><span class="when">Aug 2026</span><span class="what">Received the <b>NIH/NLM K99/R00 Pathway to Independence Award</b>.</span></li>
+      <li><span class="when">Jul 2026</span><span class="what">"Tutorial: Guidance on the use of large language models for medical research" published in <i>Nature Protocols</i>.</span></li>
+      <li><span class="when">Jun 2026</span><span class="what">"A critical evaluation of generative query expansion on biomedical literature retrieval" published in <i>JAMIA</i>.</span></li>
+      <li><span class="when">Jun 2026</span><span class="what">"A data-driven method for research trend analysis in a scientific discipline" published in <i>Journal of Biomedical Informatics</i>.</span></li>
+      <li><span class="when">May 2026</span><span class="what">"Interpretable fine-tuned large language models facilitate making genetic test decisions for rare diseases" published in <i>npj Digital Medicine</i>.</span></li>
       <li><span class="when">Apr 2026</span><span class="what">"Improving retrieval-augmented generation without taxonomy-based error categorization" accepted to the <b>ACL 2026 Main Conference</b>.</span></li>
       <li><span class="when">Apr 2026</span><span class="what">"A neural-symbolic AI agent system for biomedical concept mapping" published in <i>npj Digital Medicine</i>.</span></li>
-      <li><span class="when">Mar 2026</span><span class="what">"A data-driven method for research trend analysis in a scientific discipline" published in <i>Journal of Biomedical Informatics</i>.</span></li>
-      <li><span class="when">Feb 2026</span><span class="what">"CPGPrompt: Translating clinical guidelines into large language model-executable decision support" published in <i>JAMIA</i>.</span></li>
+      <li><span class="when">Apr 2026</span><span class="what">"CPGPrompt: Translating clinical guidelines into large language model-executable decision support" published in <i>JAMIA</i>.</span></li>
       <li><span class="when">Dec 2025</span><span class="what">"Scalable scientific interest profiling using large language models" published in <i>Journal of Biomedical Informatics</i>.</span></li>
       <li><span class="when">Nov 2025</span><span class="what">Tutorial "Towards a Human-AI Collaborative Medical Research Life Cycle" at the AMIA Annual Symposium.</span></li>
+      <li><span class="when">Sep 2025</span><span class="what">"CLEAR: A vision to support clinical evidence lifecycle with continuous learning" published in <i>Journal of Biomedical Informatics</i>.</span></li>
+      <li><span class="when">Aug 2025</span><span class="what">"EvidenceOutcomes: A dataset of clinical trial publications with clinically meaningful outcomes" presented at <i>MEDINFO 2025</i>.</span></li>
       <li><span class="when">Jul 2025</span><span class="what">"Natural language processing in support of evidence-based medicine: A scoping review" published in <i>Findings of ACL 2025</i>.</span></li>
       <li><span class="when">Jun 2025</span><span class="what">Keynote at the IEEE/ACM CHASE Conference.</span></li>
       <li><span class="when">May 2025</span><span class="what">"Leveraging long context in retrieval augmented language models for medical question answering" published in <i>npj Digital Medicine</i>.</span></li>
@@ -187,56 +238,24 @@
   </section>
 
   <section class="card" id="research">
-    <h2>Research Focus</h2>
+    <h2>Research</h2>
     <div class="grid">
       <div class="grid-item">
-        <div class="tag">AI agents</div>
-        <p>Neural-symbolic agent pipelines for biomedical concept normalization, and self-corrective agentic mechanisms for question answering.</p>
+        <div class="tag">Entity recognition</div>
+        <p>Extracting PICO elements from clinical trial publications, including overlapping entities and semi-supervised learning. <i>PICOX (JAMIA 2024), FinePICO (JAMIA 2025)</i></p>
       </div>
       <div class="grid-item">
-        <div class="tag">Retrieval-augmented generation</div>
-        <p>Long-context retrieval for medical question answering, and improving RAG systems without taxonomy-based error categorization.</p>
+        <div class="tag">Concept normalization</div>
+        <p>A neural-symbolic AI agent system that maps biomedical text to standard concepts. <i>npj Digital Medicine 2026</i></p>
       </div>
       <div class="grid-item">
-        <div class="tag">Clinical evidence synthesis</div>
-        <p>Optimizing and deploying open-source LLMs for medical evidence summarization, with attention to trustworthiness.</p>
+        <div class="tag">Evidence summarization</div>
+        <p>Fine-tuning open-source LLMs to close the gap with commercial models for medical evidence summarization. <i>npj Digital Medicine 2024</i></p>
       </div>
       <div class="grid-item">
-        <div class="tag">Biomedical information extraction</div>
-        <p>Named-entity recognition for PICO elements in clinical trials, including overlapping entities and semi-supervised learning.</p>
+        <div class="tag">Question answering</div>
+        <p>Long-context retrieval-augmented generation and self-corrective agentic QA. <i>BriefContext (npj Digital Medicine 2025), ACL 2026</i></p>
       </div>
-    </div>
-  </section>
-
-  <section class="card" id="experience">
-    <h2>Experience</h2>
-    <div class="item">
-      <div class="item-head"><h3>Columbia University — Associate Research Scientist</h3><span class="years">2025–now</span></div>
-      <p>Department of Biomedical Informatics (Weng Lab). Developed a neural-symbolic AI agent pipeline for biomedical concept normalization (<i>npj Digital Medicine</i>, 2026) and a self-corrective agentic mechanism for question answering (ACL 2026).</p>
-    </div>
-    <div class="item">
-      <div class="item-head"><h3>Columbia University — Postdoctoral Research Scientist</h3><span class="years">2023–2025</span></div>
-      <p>Advised by Prof. Chunhua Weng. Developed named-entity recognition models to extract PICO elements from clinical trials; optimized and deployed LLMs for clinical evidence summarization.</p>
-    </div>
-    <div class="item">
-      <div class="item-head"><h3>Google Cloud — Software Engineer</h3><span class="years">2020–2023</span></div>
-      <p>Built containerized packages for TPU function verification, dashboards for monitoring TPU health across the fleet, and automatic pipelines for checksum generation of TPU health checkers.</p>
-    </div>
-    <div class="item">
-      <div class="item-head"><h3>Facebook Search — Research Scientist Intern</h3><span class="years">2019</span></div>
-      <p>Developed a query intent model to predict the type of pages users would interact with, improved through data cleaning and query embeddings.</p>
-    </div>
-    <div class="item">
-      <div class="item-head"><h3>Google Natural Language Understanding — Software Engineer Intern</h3><span class="years">2018</span></div>
-      <p>Developed a neural quality-estimation network that estimates post-edit effort for machine translations, using transfer learning.</p>
-    </div>
-    <div class="item">
-      <div class="item-head"><h3>Google Search Infrastructure — Software Engineer Intern</h3><span class="years">2017</span></div>
-      <p>Helped design and modularize a new rendering backend in Google Web Server to simplify dependencies and speed up search feature development.</p>
-    </div>
-    <div class="item">
-      <div class="item-head"><h3>University of Delaware — Ph.D., Computer Science</h3><span class="years">2015–2021</span></div>
-      <p>Advised by Prof. Hagit Shatkay. Earlier: M.S. in Computer Science, Georgia Institute of Technology (2013); B.Eng. in Software Engineering, Dalian University of Technology (2012).</p>
     </div>
   </section>
 
@@ -254,6 +273,12 @@
         <p class="authors"><strong>Zhang G.</strong>, Xu Z., Jin Q., Chen F., Fang Y., Liu Y., Rousseau J.F., Xu Z., Lu Z., Weng C., Peng Y.</p>
         <p class="venue">npj Digital Medicine 2025</p>
         <div class="links"><a href="https://doi.org/10.1038/s41746-025-01651-w">paper</a></div>
+      </article>
+      <article class="pub">
+        <h3>Semi-supervised learning from small annotated data and large unlabeled data for fine-grained Participants, Intervention, Comparison, and Outcomes entity recognition</h3>
+        <p class="authors">Chen F.<sup>†</sup>, <strong>Zhang G.</strong><sup>†</sup>, Fang Y., Peng Y.<sup>‡</sup>, Weng C.<sup>‡</sup></p>
+        <p class="venue">JAMIA 2025</p>
+        <div class="links"><a href="https://doi.org/10.1093/jamia/ocae326">paper</a></div>
       </article>
       <article class="pub">
         <h3>Closing the gap between open-source and commercial large language models for medical evidence summarization</h3>
@@ -293,22 +318,46 @@
           <div class="links"><a href="https://doi.org/10.1016/j.jbi.2026.105013">paper</a></div>
         </article>
         <article class="pub">
+          <h3>Evaluating unsupervised and rule-based phenotyping methods versus administrative code counts for systemic sclerosis identification</h3>
+          <p class="authors">Luo Y., <strong>Zhang G.</strong>, Agarwal A., Weng C., Bernstein E.J.</p>
+          <p class="venue">Seminars in Arthritis and Rheumatism 2026</p>
+          <div class="links"><a href="https://doi.org/10.1016/j.semarthrit.2026.153033">paper</a></div>
+        </article>
+        <article class="pub">
+          <h3>Tutorial: Guidance on the use of large language models for medical research</h3>
+          <p class="authors">Jin Q., Wan N., Leaman R., Tian S., Wang Z., Yang Y., Wang Z., Xiong G., Lai P.T., Zhu Q., Hou B., Sarfo-Gyamfi M., <strong>Zhang G.</strong>, Gilson A., Bhasuran B., He Z., Zhang A., Sun J., Weng C., Summers R.M., Chen Q., Peng Y., Lu Z.</p>
+          <p class="venue">Nature Protocols 2026</p>
+          <div class="links"><a href="https://doi.org/10.1038/s41596-026-01408-z">paper</a></div>
+        </article>
+        <article class="pub">
+          <h3>A critical evaluation of generative query expansion on biomedical literature retrieval</h3>
+          <p class="authors">Fang Y., <strong>Zhang G.</strong>, Chen F., Peng Y., Weng C.</p>
+          <p class="venue">JAMIA 2026</p>
+          <div class="links"><a href="https://doi.org/10.1093/jamia/ocag037">paper</a></div>
+        </article>
+        <article class="pub">
+          <h3>Interpretable fine-tuned large language models facilitate making genetic test decisions for rare diseases</h3>
+          <p class="authors">Nguyen Q.M., Chen F., Liu C., Campbell I.M., <strong>Zhang G.</strong>, Wu D., Szigety K.M., Sheppard S.E., Ahimaz P., Ta C.N., Chung W.K., Weng C., Wang K.</p>
+          <p class="venue">npj Digital Medicine 2026</p>
+          <div class="links"><a href="https://doi.org/10.1038/s41746-026-02733-z">paper</a></div>
+        </article>
+        <article class="pub">
           <h3>CPGPrompt: Translating clinical guidelines into large language model-executable decision support</h3>
           <p class="authors">Deng R., Martin G., Wang T., <strong>Zhang G.</strong>, Liu Y., Weng C., Wang Y., Rousseau J.F., Peng Y.</p>
           <p class="venue">JAMIA 2026</p>
           <div class="links"><a href="https://doi.org/10.1093/jamia/ocag026">paper</a></div>
         </article>
         <article class="pub">
-          <h3>Scalable scientific interest profiling using large language models</h3>
-          <p class="authors">Liang Y.<sup>†</sup>, <strong>Zhang G.</strong><sup>†</sup>, Sun E., Idnay B., Fang Y., Chen F., Ta C., Peng Y.<sup>‡</sup>, Weng C.<sup>‡</sup></p>
-          <p class="venue">Journal of Biomedical Informatics 2025</p>
-          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2025.104949">paper</a></div>
-        </article>
-        <article class="pub">
           <h3>Leveraging long context in retrieval augmented language models for medical question answering</h3>
           <p class="authors"><strong>Zhang G.</strong>, Xu Z., Jin Q., Chen F., Fang Y., Liu Y., Rousseau J.F., Xu Z., Lu Z., Weng C., Peng Y.</p>
           <p class="venue">npj Digital Medicine 2025</p>
           <div class="links"><a href="https://doi.org/10.1038/s41746-025-01651-w">paper</a></div>
+        </article>
+        <article class="pub">
+          <h3>Scalable scientific interest profiling using large language models</h3>
+          <p class="authors">Liang Y.<sup>†</sup>, <strong>Zhang G.</strong><sup>†</sup>, Sun E., Idnay B., Fang Y., Chen F., Ta C., Peng Y.<sup>‡</sup>, Weng C.<sup>‡</sup></p>
+          <p class="venue">Journal of Biomedical Informatics 2025</p>
+          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2025.104949">paper</a></div>
         </article>
         <article class="pub">
           <h3>Semi-supervised learning from small annotated data and large unlabeled data for fine-grained Participants, Intervention, Comparison, and Outcomes entity recognition</h3>
@@ -323,22 +372,16 @@
           <div class="links"><a href="https://doi.org/10.1093/jamia/ocae274">paper</a></div>
         </article>
         <article class="pub">
+          <h3>CLEAR: A vision to support clinical evidence lifecycle with continuous learning</h3>
+          <p class="authors">Fang Y., <strong>Zhang G.</strong>, Chen F., Hripcsak G., Peng Y., Ryan P., Weng C.</p>
+          <p class="venue">Journal of Biomedical Informatics 2025</p>
+          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2025.104884">paper</a></div>
+        </article>
+        <article class="pub">
           <h3>Closing the gap between open-source and commercial large language models for medical evidence summarization</h3>
           <p class="authors"><strong>Zhang G.</strong>, Jin Q., Zhou Y., Wang S., Idnay B., Luo Y., Park E., Nestor J.G., Spotnitz M.E., Soroush A., Campion T.R. Jr, Lu Z., Weng C.<sup>‡</sup>, Peng Y.<sup>‡</sup></p>
           <p class="venue">npj Digital Medicine 2024</p>
           <div class="links"><a href="https://doi.org/10.1038/s41746-024-01239-w">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Rare disease diagnosis using knowledge-guided retrieval augmentation for ChatGPT</h3>
-          <p class="authors">Zelin C., Chung W.K., Jeanne M., <strong>Zhang G.</strong>, Weng C.</p>
-          <p class="venue">Journal of Biomedical Informatics 2024</p>
-          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2024.104702">paper</a></div>
-        </article>
-        <article class="pub">
-          <h3>Criteria2Query 3.0: Leveraging generative large language models for clinical trial eligibility query generation</h3>
-          <p class="authors">Park J.<sup>†</sup>, Fang Y.<sup>†</sup>, Ta C., <strong>Zhang G.</strong>, Idnay B., Chen F., Feng D., Shyu R., Gordon E.R., Spotnitz M., Weng C.</p>
-          <p class="venue">Journal of Biomedical Informatics 2024</p>
-          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2024.104649">paper</a></div>
         </article>
         <article class="pub">
           <h3>Leveraging generative AI for clinical evidence synthesis needs to ensure trustworthiness</h3>
@@ -351,6 +394,18 @@
           <p class="authors"><strong>Zhang G.</strong>, Zhou Y., Hu Y., Xu H., Weng C.<sup>‡</sup>, Peng Y.<sup>‡</sup></p>
           <p class="venue">JAMIA 2024</p>
           <div class="links"><a href="https://doi.org/10.1093/jamia/ocae065">paper</a></div>
+        </article>
+        <article class="pub">
+          <h3>Rare disease diagnosis using knowledge-guided retrieval augmentation for ChatGPT</h3>
+          <p class="authors">Zelin C., Chung W.K., Jeanne M., <strong>Zhang G.</strong>, Weng C.</p>
+          <p class="venue">Journal of Biomedical Informatics 2024</p>
+          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2024.104702">paper</a></div>
+        </article>
+        <article class="pub">
+          <h3>Criteria2Query 3.0: Leveraging generative large language models for clinical trial eligibility query generation</h3>
+          <p class="authors">Park J.<sup>†</sup>, Fang Y.<sup>†</sup>, Ta C., <strong>Zhang G.</strong>, Idnay B., Chen F., Feng D., Shyu R., Gordon E.R., Spotnitz M., Weng C.</p>
+          <p class="venue">Journal of Biomedical Informatics 2024</p>
+          <div class="links"><a href="https://doi.org/10.1016/j.jbi.2024.104649">paper</a></div>
         </article>
         <article class="pub">
           <h3>A survey of clinicians' views of the utility of large language models</h3>
@@ -368,7 +423,7 @@
           <h3>Utilizing image and caption information for biomedical document classification</h3>
           <p class="authors">Li P., Jiang X., <strong>Zhang G.</strong>, Trabucco J.T., Raciti D., Smith C., Ringwald M., Marai G.E., Arighi C., Shatkay H.</p>
           <p class="venue">Bioinformatics (ISMB) 2021</p>
-          <div class="links"><a href="https://doi.org/10.1093/bioinformatics/btab568">paper</a></div>
+          <div class="links"><a href="https://doi.org/10.1093/bioinformatics/btab331">paper</a></div>
         </article>
         <article class="pub">
           <h3>An effective biomedical document classification scheme in support of biocuration: Addressing class imbalance</h3>
@@ -391,6 +446,12 @@
           <p class="venue">ACL 2026 (Main Conference)</p>
         </article>
         <article class="pub">
+          <h3>EvidenceOutcomes: A dataset of clinical trial publications with clinically meaningful outcomes</h3>
+          <p class="authors">Zhou Y., Newbury A.M., <strong>Zhang G.</strong>, Idnay B.R., Liu H., Weng C., Peng Y.</p>
+          <p class="venue">MEDINFO 2025</p>
+          <div class="links"><a href="https://doi.org/10.3233/SHTI250935">paper</a></div>
+        </article>
+        <article class="pub">
           <h3>Natural language processing in support of evidence-based medicine: A scoping review</h3>
           <p class="authors">Xu Z., Ma H., <strong>Zhang G.</strong>, Ding Y., Weng C., Peng Y.</p>
           <p class="venue">Findings of ACL 2025</p>
@@ -398,7 +459,7 @@
         </article>
         <article class="pub">
           <h3>Clinical note structural knowledge improves word sense disambiguation</h3>
-          <p class="authors">Chen F., <strong>Zhang G.</strong>, Chen S., Callahan T., Weng C.</p>
+          <p class="authors">Chen F.<sup>†</sup>, <strong>Zhang G.</strong><sup>†</sup>, Chen S., Callahan T., Weng C.</p>
           <p class="venue">AMIA Joint Summits on Translational Science 2024</p>
           <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/38827062/">paper</a></div>
         </article>
@@ -427,6 +488,49 @@
     </details>
   </section>
 
+  <section class="card" id="experience">
+    <h2>Experience</h2>
+    <div class="item">
+      <div class="item-head"><h3>Columbia University — Associate Research Scientist</h3><span class="years">2025–now</span></div>
+      <p>Department of Biomedical Informatics (Weng Lab). Developed a neural-symbolic AI agent pipeline for biomedical concept normalization (<i>npj Digital Medicine</i>, 2026) and a self-corrective agentic mechanism for question answering (ACL 2026).</p>
+    </div>
+    <div class="item">
+      <div class="item-head"><h3>Columbia University — Postdoctoral Research Scientist</h3><span class="years">2023–2025</span></div>
+      <p>Advised by Prof. Chunhua Weng. Developed named-entity recognition models to extract PICO elements from clinical trials; optimized and deployed LLMs for clinical evidence summarization.</p>
+    </div>
+    <div class="item">
+      <div class="item-head"><h3>Google Cloud — Software Engineer</h3><span class="years">2020–2023</span></div>
+      <p>Built containerized packages for TPU function verification, dashboards for monitoring TPU health across the fleet, and automatic pipelines for checksum generation of TPU health checkers.</p>
+    </div>
+    <div class="item">
+      <div class="item-head"><h3>Facebook Search — Research Scientist Intern</h3><span class="years">2019</span></div>
+      <p>Developed a query intent model to predict the type of pages users would interact with, improved through data cleaning and query embeddings.</p>
+    </div>
+    <div class="item">
+      <div class="item-head"><h3>Google Natural Language Understanding — Software Engineer Intern</h3><span class="years">2018</span></div>
+      <p>Developed a neural quality-estimation network that estimates post-edit effort for machine translations, using transfer learning.</p>
+    </div>
+    <div class="item">
+      <div class="item-head"><h3>Google Search Infrastructure — Software Engineer Intern</h3><span class="years">2017</span></div>
+      <p>Helped design and modularize a new rendering backend in Google Web Server to simplify dependencies and speed up search feature development.</p>
+    </div>
+
+    <h3 class="label">Education</h3>
+    <ul class="rows">
+      <li><span>Ph.D., Computer Science, University of Delaware<span class="sub">Advisor: Prof. Hagit Shatkay</span></span><span class="r">2015–2021</span></li>
+      <li><span>M.S., Computer Science, Georgia Institute of Technology</span><span class="r">2012–2013</span></li>
+      <li><span>B.Eng., Software Engineering, Dalian University of Technology</span><span class="r">2008–2012</span></li>
+    </ul>
+
+    <h3 class="label">Teaching</h3>
+    <ul class="rows">
+      <li><span>CISC 436/636: Computational Biology and Bioinformatics<span class="sub">Graduate TA, University of Delaware</span></span><span class="r">Fall 2020</span></li>
+      <li><span>CISC 320: Introduction to Algorithms<span class="sub">Graduate TA, University of Delaware</span></span><span class="r">Fall 2020</span></li>
+      <li><span>CISC 220: Data Structures<span class="sub">Graduate TA, University of Delaware</span></span><span class="r">Spring 2016</span></li>
+      <li><span>CISC 106: General Computer Science for Engineers<span class="sub">Graduate TA, University of Delaware</span></span><span class="r">Fall 2015</span></li>
+    </ul>
+  </section>
+
   <section class="card" id="talks">
     <h2>Invited Talks &amp; Tutorials</h2>
     <ul class="rows">
@@ -440,8 +544,27 @@
     </ul>
   </section>
 
-  <section class="card" id="awards">
-    <h2>Honors &amp; Service</h2>
+  <section class="card" id="service">
+    <h2>Service &amp; Honors</h2>
+    <h3 class="label">Editorial Roles</h3>
+    <ul class="rows">
+      <li><span>Editorial Board Member, <i>Journal of Biomedical Informatics</i></span><span class="r">Starting Jan 2027</span></li>
+      <li><span>Associate Editor, <i>Applied Clinical Informatics</i> Special Topic<span class="sub">"Artificial Intelligence Application in Clinical Decision Support Systems"</span></span></li>
+      <li><span>Advisory Committee, <i>Journal of Biomedical Informatics</i> Special Issue<span class="sub">"Agentic AI for Lifecycle-Aware Real-World Evidence: Methods for Scalable, Trustworthy Evaluation of Treatment Effectiveness and Safety"</span></span></li>
+      <li><span>Early Career Editorial Board, <i>Journal of Biomedical Informatics</i></span><span class="r">2025–2026</span></li>
+      <li><span>Early Career Editorial Board, <i>Applied Clinical Informatics</i></span><span class="r">2025–2026</span></li>
+    </ul>
+
+    <h3 class="label">Conference Reviewer</h3>
+    <p class="muted">ACL · EACL · EMNLP · NeurIPS · CVPR</p>
+
+    <h3 class="label">Journal Reviewer</h3>
+    <p class="muted">
+      Nature Communications · Scientific Reports · npj Digital Medicine · npj Health Systems · JAMIA ·
+      Journal of Biomedical Informatics · Applied Clinical Informatics · JMIR · JMIR Medical Informatics ·
+      IEEE/ACM TASLP · BMC Medical Informatics and Decision Making · BMC Public Health · BMC Pregnancy and Childbirth
+    </p>
+
     <h3 class="label">Honors &amp; Awards</h3>
     <ul class="rows">
       <li><span>NIH/NLM K99/R00 Pathway to Independence Award</span><span class="r">2026</span></li>
@@ -452,30 +575,60 @@
       <li><span>UDel Professional Development Award</span><span class="r">2018</span></li>
       <li><span>Laird Fellowship Nomination (top 10 first-year graduate students, College of Engineering)</span><span class="r">2016</span></li>
     </ul>
+  </section>
 
-    <h3 class="label">Editorial Boards</h3>
-    <ul class="rows">
-      <li><span>Early Career Editorial Board, <i>Journal of Biomedical Informatics</i></span><span class="r">2025–now</span></li>
-      <li><span>Early Career Editorial Board, <i>Applied Clinical Informatics</i></span><span class="r">2025–now</span></li>
-    </ul>
-
-    <h3 class="label">Reviewer</h3>
-    <p class="muted">
-      Nature Communications · npj Digital Medicine · npj Health Systems · JAMIA · Journal of Biomedical Informatics ·
-      Applied Clinical Informatics · Scientific Reports · IEEE/ACM TASLP · BMC Medical Informatics and Decision Making ·
-      BMC Public Health · BMC Pregnancy and Childbirth · JMIR · JMIR Medical Informatics · NeurIPS
-    </p>
-
-    <h3 class="label">Teaching</h3>
-    <ul class="rows">
-      <li><span>CISC 436/636: Computational Biology and Bioinformatics<span class="sub">Graduate TA, University of Delaware</span></span><span class="r">Fall 2020</span></li>
-      <li><span>CISC 320: Introduction to Algorithms<span class="sub">Graduate TA, University of Delaware</span></span><span class="r">Fall 2020</span></li>
-      <li><span>CISC 220: Data Structures<span class="sub">Graduate TA, University of Delaware</span></span><span class="r">Spring 2016</span></li>
-      <li><span>CISC 106: General Computer Science for Engineers<span class="sub">Graduate TA, University of Delaware</span></span><span class="r">Fall 2015</span></li>
-    </ul>
+  <section class="card" id="skills">
+    <h2>Technical Skills</h2>
+    <div class="grid">
+      <div class="grid-item">
+        <div class="tag">LLM post-training</div>
+        <p>SFT, LoRA/QLoRA, RLHF, DPO, GRPO</p>
+      </div>
+      <div class="grid-item">
+        <div class="tag">Agentic &amp; retrieval systems</div>
+        <p>Neural-symbolic agent systems; RAG and agentic RAG; BM25 and dense retrieval (bi-encoders, cross-encoder reranking); multi-stage literature screening</p>
+      </div>
+      <div class="grid-item">
+        <div class="tag">Inference &amp; serving</div>
+        <p>vLLM for large-scale inference; Ollama for local model serving; PyTorch, Hugging Face Transformers</p>
+      </div>
+      <div class="grid-item">
+        <div class="tag">Evaluation</div>
+        <p>Rule-based checkers for NLP pipelines; LLM judges; held-out benchmark construction</p>
+      </div>
+      <div class="grid-item">
+        <div class="tag">Programming</div>
+        <p>Python, SQL, C/C++, Java</p>
+      </div>
+      <div class="grid-item">
+        <div class="tag">Languages</div>
+        <p>Chinese (native), English (bilingual proficiency)</p>
+      </div>
+    </div>
   </section>
 
   <footer>© 2026 Gongbo Zhang · Last updated 2026-10-05</footer>
 </div>
+
+<script>
+  // Highlight the nav link for the section in view.
+  (function () {
+    var links = document.querySelectorAll(".nav-inner a");
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove("active"); });
+        var a = byId[e.target.id];
+        if (a) { a.classList.add("active"); a.scrollIntoView({ block: "nearest", inline: "nearest" }); }
+      });
+    }, { rootMargin: "-80px 0px -70% 0px" });
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+  })();
+</script>
 </body>
 </html>

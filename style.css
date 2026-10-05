@@ -131,6 +131,10 @@ h1 { font-size: 44px; line-height: 1.15; margin-bottom: 10px; letter-spacing: -0
 .item-head h3 { font-size: 17px; font-weight: 600; color: var(--text-dark); }
 .years { font-size: 14px; color: var(--text-light); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .item p { font-size: 15px; margin-top: 4px; }
+.item .sub-line { color: var(--text-light); }
+.item .bullets { list-style: none; margin-top: 8px; }
+.item .bullets li { position: relative; padding-left: 16px; font-size: 15px; line-height: 1.6; margin-bottom: 4px; }
+.item .bullets li::before { content: ""; position: absolute; left: 0; top: .7em; width: 4px; height: 4px; border-radius: 50%; background: var(--text-light); }
 
 /* Publications */
 .pubs { display: flex; flex-direction: column; gap: 18px; }

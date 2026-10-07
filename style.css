@@ -181,10 +181,10 @@ footer { text-align: center; color: var(--text-light); font-size: 13.5px; paddin
 }
 
 
-/* Visitor globe: small, bottom-right of the page (1/10 of the content width),
+/* Visitor globe: small (56px), bottom-right of the page,
    desaturated and blended into the page background; full color on hover. */
 .visitor-globe {
-  width: 10%; min-width: 64px; margin: 4px 0 0 auto;
+  width: 56px; margin: 4px 0 0 auto;
   filter: grayscale(1) contrast(.9); opacity: .55; mix-blend-mode: multiply;
   transition: filter .3s, opacity .3s;
 }

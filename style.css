@@ -183,3 +183,4 @@ footer { text-align: center; color: var(--text-light); font-size: 13.5px; paddin
 
 /* Visitor globe: 92px, bottom-right of the home page, original colors. */
 .visitor-globe { width: 92px; margin: 4px 0 0 auto; }
+.visitor-globe a { cursor: default; }

@@ -222,6 +222,12 @@
     <div class="visitor-globe" aria-label="Visitor map">
       <script type="text/javascript" id="mmvst_globe" src="https://mapmyvisitors.com/globe.js?d=8Wr81EtxMcpVW4ysAyfuJwIwxNrKg1kEj8-LNkrEsXg"></script>
     </div>
+    <script>
+      // The widget wraps the globe in a link to mapmyvisitors.com; keep clicks on the page.
+      document.querySelector(".visitor-globe").addEventListener("click", function (e) {
+        if (e.target.closest("a")) e.preventDefault();
+      }, true);
+    </script>
   </footer>
 </div>
 </body>

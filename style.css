@@ -181,15 +181,5 @@ footer { text-align: center; color: var(--text-light); font-size: 13.5px; paddin
 }
 
 
-/* Visitor globe: small (56px), bottom-right of the page,
-   desaturated and blended into the page background; full color on hover. */
-.visitor-globe {
-  width: 56px; margin: 4px 0 0 auto;
-  filter: grayscale(1) contrast(.9); opacity: .55; mix-blend-mode: multiply;
-  transition: filter .3s, opacity .3s;
-}
-.visitor-globe:hover { filter: none; opacity: 1; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .visitor-globe { mix-blend-mode: normal; opacity: .4; }
-}
-:root[data-theme="dark"] .visitor-globe { mix-blend-mode: normal; opacity: .4; }
+/* Visitor globe: 92px, bottom-right of the home page, original colors. */
+.visitor-globe { width: 92px; margin: 4px 0 0 auto; }

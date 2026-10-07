@@ -181,10 +181,15 @@ footer { text-align: center; color: var(--text-light); font-size: 13.5px; paddin
 }
 
 
-/* Visitor globe: pinned faintly in the bottom-right corner on wide screens,
-   small and centered in the footer where there is no free margin. */
-.visitor-globe { width: 110px; margin: 16px auto 0; opacity: .85; }
-@media (min-width: 1280px) {
-  .visitor-globe { position: fixed; right: 20px; bottom: 16px; margin: 0; z-index: 1; opacity: .7; transition: opacity .2s; }
-  .visitor-globe:hover { opacity: 1; }
+/* Visitor globe: small, bottom-right of the page (1/10 of the content width),
+   desaturated and blended into the page background; full color on hover. */
+.visitor-globe {
+  width: 10%; min-width: 64px; margin: 4px 0 0 auto;
+  filter: grayscale(1) contrast(.9); opacity: .55; mix-blend-mode: multiply;
+  transition: filter .3s, opacity .3s;
 }
+.visitor-globe:hover { filter: none; opacity: 1; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .visitor-globe { mix-blend-mode: normal; opacity: .4; }
+}
+:root[data-theme="dark"] .visitor-globe { mix-blend-mode: normal; opacity: .4; }

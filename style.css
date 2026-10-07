@@ -180,6 +180,11 @@ footer { text-align: center; color: var(--text-light); font-size: 13.5px; paddin
   .item-head, .rows li { flex-direction: column; gap: 0; }
 }
 
-/* Visitor map */
-.visitors h2 { text-align: left; }
-.visitors-map { display: flex; justify-content: center; width: 160px; max-width: 100%; margin: 0 auto; min-height: 160px; }
+
+/* Visitor globe: pinned faintly in the bottom-right corner on wide screens,
+   small and centered in the footer where there is no free margin. */
+.visitor-globe { width: 110px; margin: 16px auto 0; opacity: .85; }
+@media (min-width: 1280px) {
+  .visitor-globe { position: fixed; right: 20px; bottom: 16px; margin: 0; z-index: 1; opacity: .7; transition: opacity .2s; }
+  .visitor-globe:hover { opacity: 1; }
+}
